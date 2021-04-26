@@ -2,14 +2,14 @@
 
 use Doctrine\Common\Collections\Expr\Value;
 
+
+// Aqui puxamos as informações necessarias para amostragem do status
 require('../lib/vendor/autoload.php');
 $exception=new \Classes\ClassException();
 session_start();
 
 $info = $_SESSION['infos'];
 $status = $_SESSION['payment'];
-// $price = $info['price']/$info['parcelas'];
-// print_r($info)
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +24,7 @@ $status = $_SESSION['payment'];
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <!-- Custom styles for this template -->
     <link href="style.css" rel="stylesheet">
-
+    <!-- É criada class para cada caso possivel -->
     <style>
         .result{display: grid; width: 100%; justify-items: center;}
             .success{width: 50%; background: #77c563; border-radius: 5px; padding: 10px; text-align: center;}
@@ -38,6 +38,7 @@ $status = $_SESSION['payment'];
       <div class="py-5 text-center">
         <h2> Status:</h2>
       </div>
+      <!-- Primeiramente é mostrado as informações passadas pelo cliente -->
     <div class="card">
     <h4>Cliente: </h4>
     <h7><?php echo $info['firstName']." ".$info['lastname']."; ".$status->card->cardholder->identification->type." : ".$status->card->cardholder->identification->number ?></h7>
@@ -49,6 +50,7 @@ $status = $_SESSION['payment'];
     <h7><?php echo $info['parcelas']."X de ".$status->transaction_details->installment_amount." R$ ( ".$status->transaction_details->total_paid_amount." R$ )" ?></h7>
 
     </div>
+    <!-- E depois o Resultado da transação -->
     <div class="result">
     <!-- <?php echo '<pre>',print_r($_SESSION['payment']),'</pre>'; ?> -->
         <?php $exception->setPayment($_SESSION['payment']); ?>

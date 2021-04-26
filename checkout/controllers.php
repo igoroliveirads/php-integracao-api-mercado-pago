@@ -3,6 +3,8 @@ session_start();
 require('../config/config.php');
 require ('../lib/vendor/autoload.php');
 
+// Primeiro passo é o recolhimento e filtragem de todos os dados do form pelo metodo post
+
 #Variables
 $email=filter_input(INPUT_POST,'email',FILTER_VALIDATE_EMAIL);
 $cardNumber=filter_input(INPUT_POST,'cardNumber',FILTER_DEFAULT);
@@ -41,12 +43,13 @@ $infos = [
     'price'=> $amount,
     'parcelas'=> $installments]; 
 
-// print_r($infos);
-
-// setcookie('infos', $infos,time()+60*60*7);
+// Guardamos as informações em session para serem utilizadas depois 
 $_SESSION['infos']=$infos;
 
 #Method
+// Aqui onde a requisição de pagamento é feito ja levando as informações necessarias e realizando o pagamento
+// Retornando um todas as informações posiveis da transação
+// Necessitamos criar um objeto tipo payment, passar as informações e chamar a função save onde a requisição realizada 
 MercadoPago\SDK::setAccessToken(SAND_TOKEN);
 $payment = new MercadoPago\Payment();
 $payment->transaction_amount = $amount;

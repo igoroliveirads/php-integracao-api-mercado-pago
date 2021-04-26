@@ -1,5 +1,5 @@
 <?php
-
+  // Realizamos o include_once para conseguimos nos comunicar com o arquivo responsavel pela consulta do CEP
   include_once('../lib/viaCep.php');
   
 ?>
@@ -30,66 +30,17 @@
         <h2>Confirmação de Compra</h2>
         <p class="lead">Abaixo está o formulário para confirmação de sua compra, por favor preencher campos abaixo.</p>
       </div>
-
+      <!-- Form Responsavel pela Utilização da API VIACEP -->
       <div class="row">
-        <div class="col-md-4 order-md-2 mb-4">
-          <!-- <h4 class="d-flex justify-content-between align-items-center mb-3">
-            <span class="text-muted">Your cart</span>
-            <span class="badge badge-secondary badge-pill">3</span>
-          </h4>
-          <ul class="list-group mb-3">
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Product name</h6>
-                <small class="text-muted">Brief description</small>
-              </div>
-              <span class="text-muted">$12</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Second product</h6>
-                <small class="text-muted">Brief description</small>
-              </div>
-              <span class="text-muted">$8</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Third item</h6>
-                <small class="text-muted">Brief description</small>
-              </div>
-              <span class="text-muted">$5</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between bg-light">
-              <div class="text-success">
-                <h6 class="my-0">Promo code</h6>
-                <small>EXAMPLECODE</small>
-              </div>
-              <span class="text-success">-$5</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between">
-              <span>Total (USD)</span>
-              <strong>$20</strong>
-            </li>
-          </ul>
-
-          <form class="card p-2">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Promo code">
-              <div class="input-group-append">
-                <button type="submit" class="btn btn-secondary">Redeem</button>
-              </div>
-            </div>
-          </form> 
-          -->
-        </div>
-        <div class="col-md-8 order-md-1">
+        <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
           <h4 class="mb-3">Informações de endereço</h4>
-          <form class="needs-validation" novalidate method="POST" name="cep" id="cep" >
+          <form class="needs-validation" novalidate method="POST" name="cep" id="cep">
             <div class="row">
-              <div  class="col-md-6 mb-3">
+              <div class="col-md-6 mb-3">
                 <label for="zip">CEP</label>
                 <div style="display: flex;">
-                  <input type="text" class="form-control" name="zip" id="zip" value="<?php echo $address->cep?>" placeholder="" required>
+                  <input type="text" class="form-control" name="zip" id="zip" value="<?php echo $address->cep?>"
+                    placeholder="" required>
                   <div class="invalid-feedback">
                     Por favor, adicione seu CEP.
                   </div>
@@ -99,6 +50,7 @@
             </div>
 
           </form>
+           <!-- Form principal da Aplicação onde as primeiras interações com MercadoPago São feitas -->
           <form class="needs-validation" novalidate method="POST" name="pay" id="pay" action="./controllers.php">
             <div class="mb-3">
               <label for="address">Endereço</label>
@@ -117,9 +69,9 @@
                 <label for="address2">Complemento<span class="text-muted">(Optional)</span></label>
                 <input type="text" class="form-control" name="address2" id="address2" placeholder="Apartment or suite">
               </div>
-              
+
             </div>
-            
+
 
             <div class="row">
               <div class="col-md-5 mb-3">
@@ -134,7 +86,8 @@
               </div>
               <div class="col-md-4 mb-3">
                 <label for="state">Estado</label>
-                <select class="custom-select d-block w-100" value="<?php echo $address->uf ?>" name="state"  id="state" required>
+                <select class="custom-select d-block w-100" value="<?php echo $address->uf ?>" name="state" id="state"
+                  required>
                   <option>Opções...</option>
                   <option selected>
                     <?php echo $address->uf ?>
@@ -146,21 +99,12 @@
               </div>
 
             </div>
-            <!-- <hr class="mb-4">
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="same-address">
-              <label class="custom-control-label" for="same-address">Endereço de cobrança igual ao endereço de
-                entrega</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="save-info">
-              <label class="custom-control-label" for="save-info">Salvar informações para compras futuras.</label>
-            </div> -->
             <h4 class="mb-3">Informações pessoais</h4>
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="firstName">Nome</label>
-                <input type="text" class="form-control" name="firstName" id="firstName" placeholder="" value="" required>
+                <input type="text" class="form-control" name="firstName" id="firstName" placeholder="" value=""
+                  required>
                 <div class="invalid-feedback">
                   Por favor, adicione seu nome.
                 </div>
@@ -183,20 +127,8 @@
             </div>
             <hr class="mb-4">
 
-            <h4 class="mb-3">Formas de pagamento</h4>
-
-            <div class="d-block my-3">
-              <div>
-              </div>
-              <div class="custom-control custom-radio">
-                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-                <label class="custom-control-label" for="credit">Cartão de Crédito</label>
-              </div>
-              <div class="custom-control custom-radio">
-                <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
-                <label class="custom-control-label" for="debit">Cartão de Débito</label>
-              </div>
-            </div>
+            <h4 class="mb-3">Informações do Cartão</h4>
+            <!-- Parte do input que trabalha com MercadoPago -->
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="cc-name">Nome do títular</label>
@@ -211,10 +143,12 @@
                 <label for="cc-number">Número do cartão</label>
                 <div class="input-group">
                   <div class="input-group-prepend">
+                    <!-- Aparti do uso a api retorna a bandeira do cartão e colocamos aki -->
                     <span class="input-group-text">
                       <div class="brand"></div>
                     </span>
                   </div>
+                  <!-- Os inputs que envolve o cartão possuem varias caracteristicas para proteção -->
                   <input type="text" class="form-control" id="cardNumber" data-checkout="cardNumber" placeholder=""
                     onselectstart="return false" onpaste="return false" onCopy="return false" onCut="return false"
                     onDrag="return false" onDrop="return false" autocomplete=off required />
@@ -247,6 +181,7 @@
             </div>
             <div class="row">
               <div class="col-md-6 mb-3">
+                <!-- O mercado Pago fornece o tipo dos documentos que aceita -->
                 <label for="docType">Documento</label>
                 <select class="custom-select d-block w-100" id="docType" data-checkout="docType"></select>
               </div>
@@ -256,6 +191,7 @@
                   required>
               </div>
             </div>
+            <!-- Apois verificar a bandeira e o valor o MercadoPago fornece as parcelas já com juros -->
             <div hidden='true' id="parcelas" class="mb-3"><label for="installments">Parcelas</label>
               <select id="installments" class="form-control" name="installments"></select>
             </div>
@@ -264,7 +200,7 @@
             <input type="hidden" name="paymentMethodId" />
             <hr class="mb-4">
             <button class="btn btn-primary btn-lg btn-block" type="submit">Finalizar compra</button>
-            
+
           </form>
         </div>
       </div>
