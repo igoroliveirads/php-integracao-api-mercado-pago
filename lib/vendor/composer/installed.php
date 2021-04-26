@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'd6dfb1e8968b494580a994f5c37137020c22ca69',
+    'reference' => '3c408122d3afa52fd1ffec0e950247677c23f5fc',
     'name' => 'slumbershop/mp',
   ),
   'versions' => 
@@ -22,12 +22,12 @@
     ),
     'doctrine/cache' => 
     array (
-      'pretty_version' => '1.10.2',
-      'version' => '1.10.2.0',
+      'pretty_version' => '1.11.0',
+      'version' => '1.11.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '13e3381b25847283a91948d04640543941309727',
+      'reference' => 'a9c1b59eba5a08ca2770a76eddb88922f504e8e0',
     ),
     'doctrine/collections' => 
     array (
@@ -108,7 +108,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'd6dfb1e8968b494580a994f5c37137020c22ca69',
+      'reference' => '3c408122d3afa52fd1ffec0e950247677c23f5fc',
     ),
   ),
 );

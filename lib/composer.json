@@ -1,13 +1,18 @@
 {
-    "name": "slumbershop/mp",
-    "description": "mercadopago",
-    "authors": [
-        {
-            "name": "Thiago Jansen Sampaio Costa",
-            "email": "thhiaggo1@hotmail.com"
-        }
-    ],
-    "require": {
-        "mercadopago/dx-php": "^2.2"
+  "name": "slumbershop/mp",
+  "description": "mercadopago",
+  "authors": [
+    {
+      "name": "Thiago Jansen Sampaio Costa",
+      "email": "thhiaggo1@hotmail.com"
     }
+  ],
+  "require": {
+    "mercadopago/dx-php": "^2.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Classes\\": "../class/"
+    }
+  }
 }

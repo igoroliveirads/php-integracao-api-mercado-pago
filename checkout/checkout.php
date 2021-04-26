@@ -1,3 +1,9 @@
+<?php
+
+  include_once('../lib/viaCep.php');
+  
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,8 +32,8 @@
       </div>
 
       <div class="row">
-        <!-- <div class="col-md-4 order-md-2 mb-4">
-          <h4 class="d-flex justify-content-between align-items-center mb-3">
+        <div class="col-md-4 order-md-2 mb-4">
+          <!-- <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-muted">Your cart</span>
             <span class="badge badge-secondary badge-pill">3</span>
           </h4>
@@ -73,22 +79,95 @@
                 <button type="submit" class="btn btn-secondary">Redeem</button>
               </div>
             </div>
-          </form>
-        </div> -->
+          </form> 
+          -->
+        </div>
         <div class="col-md-8 order-md-1">
           <h4 class="mb-3">Informações de endereço</h4>
+          <form class="needs-validation" novalidate method="POST" name="cep" id="cep" >
+            <div class="row">
+              <div  class="col-md-6 mb-3">
+                <label for="zip">CEP</label>
+                <div style="display: flex;">
+                  <input type="text" class="form-control" name="zip" id="zip" value="<?php echo $address->cep?>" placeholder="" required>
+                  <div class="invalid-feedback">
+                    Por favor, adicione seu CEP.
+                  </div>
+                  <button class="" type="submit">Buscar</button>
+                </div>
+              </div>
+            </div>
+
+          </form>
           <form class="needs-validation" novalidate method="POST" name="pay" id="pay" action="./controllers.php">
+            <div class="mb-3">
+              <label for="address">Endereço</label>
+              <input type="text" class="form-control" name="addr" id="addr" value="<?php echo $address->logradouro?>"
+                placeholder="Rua General Portinho, 464" required>
+              <div class="invalid-feedback">
+                Por favor, adicione seu endereço completo.
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="number">Número</label>
+                <input type="text" class="form-control" name="number" id="number" placeholder="123">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="address2">Complemento<span class="text-muted">(Optional)</span></label>
+                <input type="text" class="form-control" name="address2" id="address2" placeholder="Apartment or suite">
+              </div>
+              
+            </div>
+            
+
+            <div class="row">
+              <div class="col-md-5 mb-3">
+                <label for="country">País</label>
+                <select class="custom-select d-block w-100" name="country" id="country" required>
+                  <option value="">Opções...</option>
+                  <option selected>Brasil</option>
+                </select>
+                <div class="invalid-feedback">
+                  Por favor, selecione um país válido.
+                </div>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="state">Estado</label>
+                <select class="custom-select d-block w-100" value="<?php echo $address->uf ?>" name="state"  id="state" required>
+                  <option>Opções...</option>
+                  <option selected>
+                    <?php echo $address->uf ?>
+                  </option>
+                </select>
+                <div class="invalid-feedback">
+                  Por favor, selecione um estado válido.
+                </div>
+              </div>
+
+            </div>
+            <!-- <hr class="mb-4">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="same-address">
+              <label class="custom-control-label" for="same-address">Endereço de cobrança igual ao endereço de
+                entrega</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="save-info">
+              <label class="custom-control-label" for="save-info">Salvar informações para compras futuras.</label>
+            </div> -->
+            <h4 class="mb-3">Informações pessoais</h4>
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="firstName">Nome</label>
-                <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                <input type="text" class="form-control" name="firstName" id="firstName" placeholder="" value="" required>
                 <div class="invalid-feedback">
                   Por favor, adicione seu nome.
                 </div>
               </div>
               <div class="col-md-6 mb-3">
                 <label for="lastName">Sobrenome</label>
-                <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                <input type="text" class="form-control" name="lastName" id="lastName" placeholder="" value="" required>
                 <div class="invalid-feedback">
                   Por favor, adicione seu sobrenome.
                 </div>
@@ -101,60 +180,6 @@
               <div class="invalid-feedback">
                 Por favor, adicione seu email.
               </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="address">Endereço</label>
-              <input type="text" class="form-control" id="address" placeholder="Rua General Portinho, 464" required>
-              <div class="invalid-feedback">
-                Por favor, adicione seu endereço completo.
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="address2">Complemento<span class="text-muted">(Optional)</span></label>
-              <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
-            </div>
-
-            <div class="row">
-              <div class="col-md-5 mb-3">
-                <label for="country">País</label>
-                <select class="custom-select d-block w-100" id="country" required>
-                  <option value="">Opções...</option>
-                  <option>Brasil</option>
-                </select>
-                <div class="invalid-feedback">
-                  Por favor, selecione um país válido.
-                </div>
-              </div>
-              <div class="col-md-4 mb-3">
-                <label for="state">Estado</label>
-                <select class="custom-select d-block w-100" id="state" required>
-                  <option value="">Opções...</option>
-                  <option>Pará</option>
-                  <option>Rio Grande do Sul</option>
-                </select>
-                <div class="invalid-feedback">
-                  Por favor, selecione um estado válido.
-                </div>
-              </div>
-              <div class="col-md-3 mb-3">
-                <label for="zip">CEP</label>
-                <input type="text" class="form-control" id="zip" placeholder="" required>
-                <div class="invalid-feedback">
-                  Por favor, adicione seu CEP.
-                </div>
-              </div>
-            </div>
-            <hr class="mb-4">
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="same-address">
-              <label class="custom-control-label" for="same-address">Endereço de cobrança igual ao endereço de
-                entrega</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="save-info">
-              <label class="custom-control-label" for="save-info">Salvar informações para compras futuras.</label>
             </div>
             <hr class="mb-4">
 
@@ -175,7 +200,8 @@
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="cc-name">Nome do títular</label>
-                <input type="text" class="form-control" id="cardholderName" data-checkout="cardholderName" placeholder="" required/>
+                <input type="text" class="form-control" id="cardholderName" data-checkout="cardholderName"
+                  placeholder="" required />
                 <small class="text-muted">Como está escrito no cartão</small>
                 <div class="invalid-feedback">
                   Nome do título é obrigatório
@@ -199,30 +225,21 @@
               </div>
             </div>
             <div class="row">
-              
-                <div class="col-md-3 mb-2"><label for="cc-expiration">Mês da Validade</label><input type="text"
+
+              <div class="col-md-3 mb-2"><label for="cc-expiration">Mês da Validade</label><input type="text"
                   class="form-control" id="cardExpirationMonth" data-checkout="cardExpirationMonth" placeholder=""
-                    onselectstart="return false" onpaste="return false" onCopy="return false" onCut="return false"
-                    onDrag="return false" onDrop="return false" autocomplete=off required/></div>
-                <div class="col-md-4 mb-2"><label for="cc-expiration">Ano da Validade</label><input type="text"
+                  onselectstart="return false" onpaste="return false" onCopy="return false" onCut="return false"
+                  onDrag="return false" onDrop="return false" autocomplete=off required /></div>
+              <div class="col-md-4 mb-2"><label for="cc-expiration">Ano da Validade</label><input type="text"
                   class="form-control" id="cardExpirationYear" data-checkout="cardExpirationYear" placeholder=""
-                    onselectstart="return false" onpaste="return false" onCopy="return false" onCut="return false"
-                    onDrag="return false" onDrop="return false" autocomplete=off required/></div>
+                  onselectstart="return false" onpaste="return false" onCopy="return false" onCut="return false"
+                  onDrag="return false" onDrop="return false" autocomplete=off required /></div>
 
-
-
-                <!-- <label for="cc-expiration">Data de expiração</label>
-                <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-                <div class="invalid-feedback">
-                  Data de expiração é obrigatória
-                </div> -->
-
-              
               <div class="col-md-5 mb-3">
                 <label for="cc-cvv">Código de segurança (CVV)</label>
                 <input type="text" class="form-control" id="securityCode" data-checkout="securityCode" placeholder="123"
                   onselectstart="return false" onpaste="return false" onCopy="return false" onCut="return false"
-                  onDrag="return false" onDrop="return false" autocomplete=off required/>
+                  onDrag="return false" onDrop="return false" autocomplete=off required />
                 <div class="invalid-feedback">
                   Código de segurança é obrigatório
                 </div>
@@ -242,11 +259,12 @@
             <div hidden='true' id="parcelas" class="mb-3"><label for="installments">Parcelas</label>
               <select id="installments" class="form-control" name="installments"></select>
             </div>
-            <input type="hidden" name="amount" id="amount" value="18309.45" />
-            <input type="hidden" name="description" value="SlumberShop"/>
+            <input type="hidden" name="amount" id="amount" value="18390.85" />
+            <input type="hidden" name="description" value="SlumberShop" />
             <input type="hidden" name="paymentMethodId" />
             <hr class="mb-4">
             <button class="btn btn-primary btn-lg btn-block" type="submit">Finalizar compra</button>
+            
           </form>
         </div>
       </div>

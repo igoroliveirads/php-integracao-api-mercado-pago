@@ -1,0 +1,3 @@
+<form id="form" style="float: left;" method="POST" action="<?php echo htmlspecialchars(
+        $_SERVER['PHP_SELF']
+      ); ?>">

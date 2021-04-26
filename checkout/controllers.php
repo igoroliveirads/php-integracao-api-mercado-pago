@@ -1,4 +1,5 @@
 <?php
+session_start();
 require('../config/config.php');
 require ('../lib/vendor/autoload.php');
 
@@ -17,6 +18,34 @@ $description=filter_input(INPUT_POST,'description',FILTER_DEFAULT);
 $paymentMethodId=filter_input(INPUT_POST,'paymentMethodId',FILTER_DEFAULT);
 $token=filter_input(INPUT_POST,'token',FILTER_DEFAULT);
 
+
+$firstName=filter_input(INPUT_POST,'firstName',FILTER_DEFAULT);
+$lastName=filter_input(INPUT_POST,'lastName',FILTER_DEFAULT);
+// $zip=filter_input(INPUT_POST,'zip',FILTER_DEFAULT);
+$address=filter_input(INPUT_POST,'addr',FILTER_DEFAULT);
+$number=filter_input(INPUT_POST,'number',FILTER_DEFAULT);
+$complement=filter_input(INPUT_POST,'address2',FILTER_DEFAULT);
+$country=filter_input(INPUT_POST,'country',FILTER_DEFAULT);
+$state=filter_input(INPUT_POST,'state',FILTER_DEFAULT);
+
+$infos = [
+    'firstName'=> $firstName,
+    'lastname'=> $lastName,
+    'zip' => $_SESSION["zip"],
+    'email' => $email,
+    'address' => $address,
+    'number' => $number,
+    'complement' => $complement,
+    'country'=> $country,
+    'state'=> $state,
+    'price'=> $amount,
+    'parcelas'=> $installments]; 
+
+// print_r($infos);
+
+// setcookie('infos', $infos,time()+60*60*7);
+$_SESSION['infos']=$infos;
+
 #Method
 MercadoPago\SDK::setAccessToken(SAND_TOKEN);
 $payment = new MercadoPago\Payment();
@@ -29,5 +58,10 @@ $payment->payer = array(
     "email" => $email
 );
 $payment->save();
-echo '<pre>',print_r($payment),'</pre>';
+
+#Result
+$_SESSION['payment']=$payment;
+header("location: http://localhost/api/checkout/result.php");
+
+//echo '<pre>',print_r($payment),'</pre>';
 ?>
