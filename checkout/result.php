@@ -14,7 +14,6 @@ $status = $_SESSION['payment'];
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,8 +31,17 @@ $status = $_SESSION['payment'];
             .error{width: 50%; background: #ffd809; border-radius: 5px; padding: 10px; text-align: center;}
     </style>
 </head>
-
 <body class="bg-light">
+<div
+      class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm"
+    >
+      <h5 class="my-0 mr-md-auto font-weight-normal">SlumberShop</h5>
+      <a
+        class="btn btn-outline-primary"
+        href="http://localhost/api/"
+        >Home</a
+      >
+    </div>
 <div class="container">
       <div class="py-5 text-center">
         <h2> Status:</h2>
@@ -67,5 +75,13 @@ $status = $_SESSION['payment'];
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 
 </body>
+<footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2017-2018 Company Name</p>
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="#">Privacy</a></li>
+          <li class="list-inline-item"><a href="#">Terms</a></li>
+          <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
+      </footer>
 
 </html>

@@ -1,12 +1,9 @@
 <?php
   // Realizamos o include_once para conseguimos nos comunicar com o arquivo responsavel pela consulta do CEP
   include_once('../lib/viaCep.php');
-  
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,13 +14,18 @@
     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <!-- Custom styles for this template -->
   <link href="style.css" rel="stylesheet">
-
 </head>
-
-<body>
-
   <body class="bg-light">
-
+  <div
+      class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm"
+    >
+      <h5 class="my-0 mr-md-auto font-weight-normal">SlumberShop</h5>
+      <a
+        class="btn btn-outline-primary"
+        href="http://localhost/api/"
+        >Home</a
+      >
+    </div>
     <div class="container">
       <div class="py-5 text-center">
         <img class="d-block mx-auto mb-4" src="#LOGOAQUI" alt="" width="72" height="72">
@@ -48,7 +50,6 @@
                 </div>
               </div>
             </div>
-
           </form>
            <!-- Form principal da Aplicação onde as primeiras interações com MercadoPago São feitas -->
           <form class="needs-validation" novalidate method="POST" name="pay" id="pay" action="./controllers.php">
@@ -69,10 +70,7 @@
                 <label for="address2">Complemento<span class="text-muted">(Optional)</span></label>
                 <input type="text" class="form-control" name="address2" id="address2" placeholder="Apartment or suite">
               </div>
-
             </div>
-
-
             <div class="row">
               <div class="col-md-5 mb-3">
                 <label for="country">País</label>
@@ -97,7 +95,6 @@
                   Por favor, selecione um estado válido.
                 </div>
               </div>
-
             </div>
             <h4 class="mb-3">Informações pessoais</h4>
             <div class="row">
@@ -117,7 +114,6 @@
                 </div>
               </div>
             </div>
-
             <div class="mb-3">
               <label for="email">Email</label>
               <input type="email" name="email" class="form-control" id="email" placeholder="you@example.com" required>
@@ -126,7 +122,6 @@
               </div>
             </div>
             <hr class="mb-4">
-
             <h4 class="mb-3">Informações do Cartão</h4>
             <!-- Parte do input que trabalha com MercadoPago -->
             <div class="row">
@@ -159,7 +154,6 @@
               </div>
             </div>
             <div class="row">
-
               <div class="col-md-3 mb-2"><label for="cc-expiration">Mês da Validade</label><input type="text"
                   class="form-control" id="cardExpirationMonth" data-checkout="cardExpirationMonth" placeholder=""
                   onselectstart="return false" onpaste="return false" onCopy="return false" onCut="return false"
@@ -168,7 +162,6 @@
                   class="form-control" id="cardExpirationYear" data-checkout="cardExpirationYear" placeholder=""
                   onselectstart="return false" onpaste="return false" onCopy="return false" onCut="return false"
                   onDrag="return false" onDrop="return false" autocomplete=off required /></div>
-
               <div class="col-md-5 mb-3">
                 <label for="cc-cvv">Código de segurança (CVV)</label>
                 <input type="text" class="form-control" id="securityCode" data-checkout="securityCode" placeholder="123"
@@ -200,11 +193,9 @@
             <input type="hidden" name="paymentMethodId" />
             <hr class="mb-4">
             <button class="btn btn-primary btn-lg btn-block" type="submit">Finalizar compra</button>
-
           </form>
         </div>
       </div>
-
       <footer class="my-5 pt-5 text-muted text-center text-small">
         <p class="mb-1">&copy; 2017-2018 Company Name</p>
         <ul class="list-inline">
@@ -214,11 +205,9 @@
         </ul>
       </footer>
     </div>
-
     <!-- Bootstrap core JavaScript
         ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
       integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
       crossorigin="anonymous"></script>
@@ -231,6 +220,5 @@
     <!-- MercadoPago -->
     <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
     <script src="../lib/api.js"></script>
-  </body>
-
+</body>
 </html>
