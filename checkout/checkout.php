@@ -22,13 +22,12 @@
       <h5 class="my-0 mr-md-auto font-weight-normal">SlumberShop</h5>
       <a
         class="btn btn-outline-primary"
-        href="http://localhost/api/"
+        href="http://localhost/php-integracao-api-mercado-pago/"
         >Home</a
       >
     </div>
     <div class="container">
       <div class="py-5 text-center">
-        <img class="d-block mx-auto mb-4" src="#LOGOAQUI" alt="" width="72" height="72">
         <h2>Confirmação de Compra</h2>
         <p class="lead">Abaixo está o formulário para confirmação de sua compra, por favor preencher campos abaixo.</p>
       </div>
@@ -67,8 +66,8 @@
                 <input type="text" class="form-control" name="number" id="number" placeholder="123">
               </div>
               <div class="col-md-6 mb-3">
-                <label for="address2">Complemento<span class="text-muted">(Optional)</span></label>
-                <input type="text" class="form-control" name="address2" id="address2" placeholder="Apartment or suite">
+                <label for="address2">Complemento<span class="text-muted">(Opcional)</span></label>
+                <input type="text" class="form-control" name="address2" id="address2" placeholder="Apartamento ou casa">
               </div>
             </div>
             <div class="row">

@@ -38,7 +38,7 @@ $status = $_SESSION['payment'];
       <h5 class="my-0 mr-md-auto font-weight-normal">SlumberShop</h5>
       <a
         class="btn btn-outline-primary"
-        href="http://localhost/api/"
+        href="http://localhost/php-integracao-api-mercado-pago/"
         >Home</a
       >
     </div>
